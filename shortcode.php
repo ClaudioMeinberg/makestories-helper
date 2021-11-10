@@ -1,10 +1,22 @@
 <?php
 /**
+ * Function that enque styling previously registered.
+ */
+function ms_wp_enqueue() {
+    wp_enqueue_style( 'style-main' );
+    wp_enqueue_script( 'script-main' );
+    wp_enqueue_style( 'slick-theme-css' );
+    wp_enqueue_style( 'slick-css' );
+    wp_enqueue_script( 'slick-min-js' );
+}
+
+/**
  * Adding shortcode for displaying all published stories on any page via shortcode 
  */
 add_shortcode( 'ms_get_published_post', 'ms_get_published_post_via_shortcode' );
 
 function ms_get_published_post_via_shortcode() {
+    ms_wp_enqueue();
     $default_posts_per_page = get_option( 'posts_per_page' );
     $getAjaxUrl =  admin_url('admin-ajax.php'); 
     ob_start();
@@ -41,6 +53,7 @@ return ob_get_clean();
 add_shortcode( 'ms_get_post_by_category', 'ms_get_post_by_category' );
 
 function ms_get_post_by_category($attr) {
+    ms_wp_enqueue();
     $default_posts_per_page = get_option( 'posts_per_page' );
     $getAjaxUrl =  admin_url('admin-ajax.php');
     $cat_id = $attr['category_id'];
@@ -68,6 +81,7 @@ function ms_get_post_by_category($attr) {
 add_shortcode( 'ms_get_single_post', 'ms_get_single_post_via_shortcode' );
 
 function ms_get_single_post_via_shortcode($attr) {
+    ms_wp_enqueue();
     $args = [
         "post_type" => MS_POST_TYPE,
         "numberposts" => -1

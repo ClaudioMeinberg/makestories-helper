@@ -121,12 +121,12 @@ function mscpt_makeStoriesDeleteStoryOptions(){ delete_option('mscpt_makestories
  * Function that enque styling to published stories via shortcode
  */
 function mscpt_makeStoriesHeaderStyle() {
-    wp_enqueue_style( 'style-main', MS_PLUGIN_BASE_URL.'assets/css/ms-style.css');
-    wp_enqueue_script( 'script-main', MS_PLUGIN_BASE_URL.'assets/js/ms-script.js',array('jquery','slick-min-js'), false, true);
-    wp_enqueue_style( 'slick-theme-css', MS_PLUGIN_BASE_URL.'vendor/slick/slick-theme.css');
-    wp_enqueue_style( 'slick-css', MS_PLUGIN_BASE_URL.'vendor/slick/slick.css');
+    wp_register_style( 'style-main', MS_PLUGIN_BASE_URL.'assets/css/ms-style.css');
+    wp_register_script( 'script-main', MS_PLUGIN_BASE_URL.'assets/js/ms-script.js',array('jquery','slick-min-js'), false, true);
+    wp_register_style( 'slick-theme-css', MS_PLUGIN_BASE_URL.'vendor/slick/slick-theme.css');
+    wp_register_style( 'slick-css', MS_PLUGIN_BASE_URL.'vendor/slick/slick.css');
     wp_localize_script( "ajax-script", "ajaxurl", admin_url("admin-ajax.php"));
-    wp_enqueue_script( 'slick-min-js', MS_PLUGIN_BASE_URL.'vendor/slick/slick.min.js',array('jquery'), false, true);
+    wp_register_script( 'slick-min-js', MS_PLUGIN_BASE_URL.'vendor/slick/slick.min.js',array('jquery'), false, true);
 }
 add_action( 'wp_enqueue_scripts', 'mscpt_makeStoriesHeaderStyle' );
 
